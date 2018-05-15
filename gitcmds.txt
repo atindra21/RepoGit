@@ -102,4 +102,25 @@ To https://github.com/atindra21/RepoGit.git
 Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 User@hp-labby16 MINGW64 /f/git/RepoGit (master)
+User@hp-labby16 MINGW64 /f/git/RepoGit (master)
+$ git add gitcmds.txt
+
+User@hp-labby16 MINGW64 /f/git/RepoGit (master)
+$ git commit -m "first cmds commit" gitcmds.txt
+[master e9d0834] first cmds commit
+ 1 file changed, 105 insertions(+)
+ create mode 100644 gitcmds.txt
+
+User@hp-labby16 MINGW64 /f/git/RepoGit (master)
+$ git push -u origin master
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.02 KiB | 1.02 MiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/atindra21/RepoGit.git
+   68dca3d..e9d0834  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+User@hp-labby16 MINGW64 /f/git/RepoGit (master)
 $

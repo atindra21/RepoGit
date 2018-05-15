@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="images/icon.png">
+    <title>Items</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.2.1/bootstrap-hover-dropdown.min.js"></script>
+    
+    <link rel="stylesheet" href="css/items.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/category.css">
+    <script src="js/items.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="ctrl">
+
+    <!--contains the header section of page -->
+    <div id="pagehead">
+        <h1>Shopper Plaza</h1>
+        <div class="dropdown">
+            <div class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" id="dropimg">
+                <span class="glyphicon glyphicon-shopping-cart cartIcon"></span>
+                <span class="caret caretCart"></span>
+            </div>
+            <span ng-bind="numOfCartItems" id="numofcartitems"></span>
+            <!--contains the cart -->
+            <div class="dropdown-menu" id="dropmenu" data-animations="spin">
+                <table class="cart" ng-hide="cartTable">
+                    <tr id ="cartheads">
+                        <th class="carthead">Item</th>
+                        <th class="carthead">View</th>
+                        <th class="carthead">Quantity</th>
+                        <th class="carthead">Price</th>
+                        <th class="carthead">Remove</th>
+                    </tr>
+                    <tr class ="cartitems" ng-repeat="eachcartitem in cartItems">
+                        <td class ="eachcartname">{{eachcartitem.name}}</span>
+                        <td><img class="eachcartimage" src="{{eachcartitem.url}}"></td>
+                        <td class="eachcartquantity">{{eachcartitem.quantity}}</td>
+                        <td class ="eachcartprice">{{eachcartitem.price}}</td>
+                        <td><span class="glyphicon glyphicon-remove-sign eachcartremove" ng-click="removeFromCart(eachcartitem.id)"></span></td>
+                    </tr>
+                </table>
+                <div id="totalcartprice">
+                    <span ng-bind="totallabel"></span>
+                    <span ng-bind="total"></span><br><br>
+                    <input class="btn btn-primary" type="submit" id="payNowCart" value="Pay Now" ng-disabled="isPayDisabled">
+                </div>
+            </div>
+        </div>
+    </div><br><br>
+
+    <!--contains the top label of page (search,sort and view) -->
+    <div id="labels">
+        <input type="text" class="form-control" placeholder="Search for..." id="searchbox" ng-model="itemSearch">
+        <label id="sortLabel">Sort by</label>
+        <select class="form-control" id="menu" ng-model="sortBy">
+            <option value="price"> Price</option>
+            <option value="id"> Category</option>
+            <option value=""> Popularity</option>
+        </select>
+        <label id="viewLabel">View</label>
+        <button class="glyphicon glyphicon-th" id="grid" ng-click="showGridView()" ng-disabled="gridDiasabled" ng-init="gridDiasabled='true'"> Grid</button>
+        <button class="glyphicon glyphicon-th-list" id="list" ng-click="showListView()"ng-disabled="listDisabled" ng-init="listDiasabled='false'"> List</button><br><br><br>
+        <span ng-bind="itemscondition" id="noitems"></span>
+    </div>
+
+    <!--contains the filter section of page -->
+    <div id="filterItemList">
+
+        <label id="filterBy">Filter</label>
+        <div id="filterByCategory">
+           <span class="categoryTitle ">Category</span><br>
+            <input type="checkbox" ng-model="men"> Men</input><br>
+            <input type="checkbox" ng-model="women"> Women</input><br>
+            <input type="checkbox" ng-model="kids"> Kids</input><br>
+            <input type="checkbox" ng-model="electronics"> Electronics</input><br>
+        </div>
+
+        <div id="filterByPrice">
+            <span class="categoryTitle">Price</span><br>
+            <input type="checkbox" ng-checked ="cond1" ng-modal="cond1"> Below 500</input><br>
+            <input type="checkbox" ng-checked ="cond2" ng-modal="cond2"> 500-1500</input><br>
+            <input type="checkbox" ng-checked ="cond3" ng-modal="cond3"> 1500-5000</input><br>
+            <input type="checkbox" ng-checked ="cond4" ng-modal="cond4"> 5000-15000</input><br>
+            <input type="checkbox" ng-checked ="cond5" ng-modal="cond5"> Above 15000</input><br>
+        </div>
+
+    </div>
+
+    <!--contains the body contents i.e all items -->
+    <div id="itemcontainer">
+        <div class="container">
+        <div class="row">
+            <div id="itemsbody" ng-repeat="item in items | filter:{name:itemSearch} | orderBy:sortBy ">
+                <div class="eachItem" ng-show="{{item.id}}" ng-if="check(item.price)">
+                    <div ng-bind="item.name" class="eachItemName"></div>
+                    <div class="eachItemBody">
+                        <img class="eachItemImage" src="{{item.url}}">
+                        <label class="quantityLabel">Quantity</label>
+                        <input type="number" class="quantityNumber" min="1" max="5" maxlength="10px" ng-model="quantity">
+                        <input type="button" class="addToCartButtons" value="Add to Cart" ng-click="addToCart(item,quantity)">
+                        <label class="priceLabel">Inclusive of taxes </label>
+                        <span class="eachItemPrice"> Rs.{{item.price}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div><br>
+
+    </div>
+
+    <!--contains the footer section of page -->
+    <div id="footer">
+        <div id="services">
+            <a class="service">
+                <i class="glyphicon glyphicon-shopping-cart" id="deliveryIcon"></i>
+                <span id="delivery1">Free Home Delivery</span>
+                <span id="delivery2">*start from Rs.500</span>
+            </a>
+            <a class="service">
+                <i class="glyphicon glyphicon-earphone" id="contactus1"></i>
+                <i class="glyphicon glyphicon-transfer" id="contactus2"></i>
+                <span id="contact1">Contact us</span>
+                <span id="contact2">Free support</span>
+            </a>
+            <a class="service">
+                <i class="glyphicon glyphicon-gift" id="gifticon"></i>
+                <span id="gift1">Free Gift Box</span>
+                <span id="gift2">Get gift notes</span>
+            </a>
+            <a class="service">
+                <i class="glyphicon glyphicon-user" id="loyaltyicon"></i>
+                <span id="loyalty1">Loyalty</span>
+                <span id="loyalty2">Rewarded</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!--<div id="categoryFilter">
+        <div class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+            <button class="categoryFilters" id="menfilter">Men</button>
+        </div>
+        <div class="dropdown-menu" data-animations="spin">
+
+        </div>
+            <button class="categoryFilters" id="womenfilter">Women</button>
+        <button class="categoryFilters" id="kidsfilter">Kids</button>
+        <button class="categoryFilters" id="elecfilter">Electronics</button>
+    </div>-->

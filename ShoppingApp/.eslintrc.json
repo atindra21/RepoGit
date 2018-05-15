@@ -1,0 +1,128 @@
+ /*
+   * .eshintrc define JavaScript linting preferences suggested by ESLint
+   * Documentation: https://eslint.org/docs/rules/
+   * Grunt Task Setup: https://github.com/sindresorhus/grunt-eslint
+   * HTML Reporter: https://github.com/mportuga/eslint-detailed-reporter
+   * Learn Linting: https://github.com/airbnb/javascript
+   * Generate ESlint preferences out of .jshintrc and .jscs : https://github.com/brenolf/polyjuice
+   * author: @btiwari
+   * updated on: 04/15/2018
+   * ======================================================================================================
+   */
+
+{
+    "env": {
+        "browser": true,
+        "jquery": true,
+        "node": true,
+        "jasmine": true,
+        "commonjs": true
+    },
+    "globals": {
+        "angular": true,
+        "i18n": true
+    },
+
+    "rules": {
+
+        /* Eliminate Possible Logical Errors
+         * =================================
+        */
+        "for-direction": "error",
+        "no-compare-neg-zero": "error",
+        "no-cond-assign": "error",
+        "no-constant-condition": "error",
+        "no-dupe-args": "error",
+        "no-dupe-keys": "error",
+        "no-duplicate-case": "error",
+        "no-ex-assign": "error", //overriding object value in Exception
+        "no-extra-boolean-cast": "error",
+        "no-func-assign": "error",
+        "no-obj-calls": "error",
+        "no-unreachable": "error",
+        "no-unsafe-finally": "error",
+        "no-unsafe-negation": "error",
+        "use-isnan": "error",
+        "valid-typeof": "error",
+        "no-extend-native": ["error", { "exceptions": ["Object"] }],
+        "no-fallthrough": "error",
+        "no-global-assign": "error",
+        "no-unmodified-loop-condition" : "error",
+        "radix": ["error", "as-needed"],
+        "comma-dangle": ["error", "never"],
+        "no-bitwise": ["error"],
+
+        //@TODO: move to "error" level
+        "no-inner-declarations": ["off", "both"],
+        "default-case": ["error", { "commentPattern": "^skip\\sdefault" }],
+        "block-scoped-var": "error",
+
+        /* Best Practices
+        * ==================================================
+        */
+        "eqeqeq": ["error", "always", {"null": "ignore"}],
+        "no-with": "error",
+        "no-labels": "error",
+        "no-loop-func": "error",
+        "no-unused-vars": "error",
+        "no-undef": "error",
+        "no-undef-init": "error",
+        "no-use-before-define": ["warn", { "functions": false }],
+
+        /* Keep code clean
+         * ==================================================
+        */
+        "no-debugger": "error",
+        "no-empty": "error",
+        "no-extra-semi": "error",
+        "no-regex-spaces": "error",
+        "no-sparse-arrays": "error",
+        "no-unexpected-multiline": "error",
+        "dot-location": ["error", "property"],
+        "no-case-declarations": "error",
+        "no-empty-function": "error",
+        "no-empty-pattern": "error",
+        "no-multi-str": "error",
+        "no-redeclare": "error",
+        "no-self-assign": "error",
+        "no-self-compare": "error",
+        "no-void": "error",
+        "wrap-iife": ["error", "outside"],
+        "no-undefined": "error",
+        "semi": ["error", "always"],
+
+        "no-alert": "off",
+        "no-console": "off",
+        "curly": "error",
+        "no-extra-parens": ["error", "all"],
+        "dot-notation": ["off", { "allowKeywords": true }],
+        "no-useless-escape": "warn",
+
+        /* Code formatting
+         * ==================================================
+        */
+        "func-call-spacing": ["error", "never"],
+        "no-tabs": ["error"],
+        "new-cap": "error",
+        "no-trailing-spaces": ["error", { "skipBlankLines": true }],
+        "quotes": ["error", "single", { "avoidEscape": true }],
+
+        "array-element-newline": ["off", { "multiline": true }],
+        "brace-style": ["off", "stroustrup"],
+        "camelcase": "error",
+        "indent": ["off", 4, { "ignoreComments": true }],
+        "space-in-parens": ["off", "always"],
+        "function-paren-newline": ["off", "never"],
+
+        /* Achieve most clean code state by enabling these
+         * =====================================================
+        */
+        "complexity": ["off", { "max": 10}],
+        "consistent-return": "off",
+        "vars-on-top": "off",
+        "strict": ["off", "global"],
+        "valid-jsdoc": "off",
+        "no-param-reassign": ["off", { "props": true, "ignorePropertyModificationsFor": ["$scope","$window","url"] }]
+    }
+
+}

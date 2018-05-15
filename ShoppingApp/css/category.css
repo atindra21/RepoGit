@@ -1,0 +1,32 @@
+#categoryFilter{
+    width: 88%;
+    height: 4%;
+    position: absolute;
+    left: 12%;
+    top: 9%;
+}
+.categoryFilters:hover{
+    color: #660066;
+    background-color: #ffe6f2;
+    font-weight: bolder;
+}
+.categoryFilters{
+    width: 25%;
+    color:#ffe6f2;
+    background-color:#660066;
+    position: absolute;
+    border-width: 0px;
+    height: 100%;
+}
+#menfilter{
+    left:0%;
+}
+#womenfilter{
+    left: 25%;
+}
+#kidsfilter{
+    left: 50%;
+}
+#elecfilter{
+    left: 75%;
+}

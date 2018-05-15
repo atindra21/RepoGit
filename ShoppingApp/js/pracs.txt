@@ -1,0 +1,59 @@
+$scope.$watchGroup(['mencheck', 'womencheck','kidscheck','eleccheck'], function(){
+      if($scope.mencheck === true){
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'men'){
+            $scope.filteredItems.push(key);
+          }
+        });
+      }
+      else{
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'men'){
+            $scope.filteredItems.pop(key);
+          }
+        });
+      }
+      if($scope.womencheck === true){
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'women'){
+            $scope.filteredItems.push(key);
+          }
+        });
+      }
+      else{
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'women'){
+            $scope.filteredItems.pop(key);
+          }
+        });
+      }
+      if($scope.kidscheck === true){
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'kids'){
+            $scope.filteredItems.push(key);
+          }
+        });
+      }
+      else{
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'kids'){
+            $scope.filteredItems.pop(key);
+          }
+        });
+      }
+      if($scope.eleccheck === true){
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'electronics'){
+            $scope.filteredItems.push(key);
+          }
+        });
+      }
+      else{
+        angular.forEach($scope.items,function(key){
+          if(key.id === 'electronics'){
+            $scope.filteredItems.pop(key);
+          }
+        });
+      }
+    });
+    

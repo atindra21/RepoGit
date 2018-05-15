@@ -1,0 +1,117 @@
+#page_header{
+    position: absolute; 
+}
+#page_footer{
+    position: absolute;
+    top: 139%;
+    width: 100%;
+    height: 6%;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+}
+#page_index{
+    position: absolute; 
+}
+#page_content{
+    position: absolute;
+}
+#title_image{
+    position: absolute;
+    width: 85%;
+    right: 0%;
+    z-index: -1;
+    height: 50%;
+    top: 8%;
+}
+#searchbox{
+    position: absolute;
+    width: 20%;
+    left: 1%;
+    top:20%;
+    height: auto;
+}
+#dropimg{
+    position: absolute;
+    right: 1%;
+    top: 16%;
+    background-color: #a8aaad;
+    font-size: 162%;
+    color:white;
+}
+#tagline{
+    position: absolute;
+    color: #a8aaad;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 450%;
+    top: 7%;
+    left: 1.5%;
+}
+#gobtn{
+    position: absolute;
+    top: 20%;
+    left: 17%;
+    width: 4%;
+    height: auto;
+}
+#pagehead{
+    background-color: gray;
+    color: whitesmoke;
+    width: 100%;
+    height: 7%;
+    top: 0%;
+    position: absolute;
+}
+h1{
+    text-align: center;
+}
+#offerSlider1{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 37%;
+    top: 60%;
+    background-color: #e3e7ed;
+}
+#offerSlider2{
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 37%;
+    top: 100%;
+    background-color: #e3e7ed;
+}
+img.slide{
+    height: 88%;
+    width: 23%;
+}
+#slide1{
+    position: absolute;
+    left: 69em;
+}
+#slide2{
+    position: absolute;
+    left: 24em;
+}
+#slide3{
+    position: absolute;
+    left: 46em;
+}
+#slide4{
+    position: absolute;
+    left: 2em;
+}
+#men{
+    position: relative;
+    left:22em;
+    color:whitesmoke;
+}
+#women{
+    position: relative;
+}
+#kids{
+    position: relative;
+}
+#electronics{
+    position: relative;
+}

@@ -47,9 +47,9 @@
                         <td><img class="eachcartimage" src="{{eachcartitem.url}}"></td>
                         <td class="eachcartquantity">
                             <div class="row">
-                            <span class="quans"><span class="glyphicon glyphicon-minus" ng-click="increaseQuantity(eachcartitem)"></span></span>
+                            <span class="quans"><span class="glyphicon glyphicon-minus" ng-click="decreaseQuantity(eachcartitem)"></span></span>
                             {{ eachcartitem.quantity}}
-                            <span class="quans"><span class="glyphicon glyphicon-plus"  ng-click="decreaseQuantity(eachcartitem)"></span></span>
+                            <span class="quans"><span class="glyphicon glyphicon-plus"  ng-click="increaseQuantity(eachcartitem)"></span></span>
                             </div>
                         </td>
                         <td class ="eachcartprice">{{eachcartitem.price | number:2}}</td>

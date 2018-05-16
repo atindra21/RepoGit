@@ -3,7 +3,6 @@ app.controller('ctrl',function($scope){
 
   $scope.cartItems = [];
   $scope.totallabel = 'Your cart is empty!';
-
   $scope.men = true;
   $scope.cartTable = true;
   $scope.women = true;
@@ -19,31 +18,31 @@ app.controller('ctrl',function($scope){
     'name' : 'Macbook Air A1466 - 13- i7 8gb 512',
     'mrp' : 48000,
     'discount': 10
-  }, {
+    }, {
     'id':'men',
     'url' : 'images/men/mencasual.jpg',
     'name' : 'Park Avenue Men Formal Shirt',
     'mrp' : 1930,
     'discount': 20
-  }, {
+    }, {
     'id':'women',
     'url' : 'images/women/womenShirt.jpg',
     'name' : 'POISON IVY women casual white shirt',
     'mrp' : 1699,
     'discount': 15
-  }, {
+    }, {
     'id':'men',
     'url' : 'images/men/mentees.jpg',
     'name' : 'Android Black Tshirt ',
     'mrp' : 485,
     'discount': 5
-  }, {
+    }, {
     'id':'kids',
     'url' : 'images/kids/kidsShirt.jpg',
     'name' : 'Little Kangaroos Black Full Sleeves Shirt',
     'mrp' : 2100,
     'discount': 10
-  }, {
+    }, {
     'id':'electronics',
     'url' : 'images/electronics/samsung.jpg',
     'name' : 'Samsung Galaxy A8+ (Black, 6GB RAM + 64GB Memory)',
@@ -55,7 +54,7 @@ app.controller('ctrl',function($scope){
     'name' : 'Bosch 12 Place Setting Dishwasher (SMS40E32EU, White)',
     'mrp' : 26000,
     'discount': 11
-  }, {
+    }, {
     'id':'men',
     'url' : 'images/men/menkurta.jpg',
     'name' : 'Black Kurta With Rust Koti',
@@ -67,82 +66,91 @@ app.controller('ctrl',function($scope){
     'name' : 'Red Tape Men Derbys Leather Formal Shoes',
     'mrp' : 1589,
     'discount': 2
-  }, {
+    }, {
     'id':'women',
     'url' : 'images/women/womenjumpsuits.jpeg',
     'name' : 'Harpa Women Black Jumpsuits',
     'mrp' : 3568,
     'discount': 8
-  }, {
+    }, {
     'id':'electronics',
     'url' : 'images/electronics/speaker.jpg',
     'name' : 'PORTABLE WATERPROOF BLUETOOTH SPEAKER',
     'mrp' : 375,
     'discount': 25
-  }, {
+    }, {
     'id':'women',
     'url' : 'images/women/womensneakers.jpeg',
     'name' : 'Cool Women White Sneakers',
     'mrp' : 1299,
     'discount': 10
-  }, {
+    }, {
     'id':'kids',
     'url' : 'images/kids/bag.png',
     'name' : 'Teddy Blue Backpack',
     'mrp' : 956,
     'discount': 5
-  }, {
+    }, {
     'id':'kids',
     'url' : 'images/kids/kurta.jpg',
     'name' : 'Boy Kurta Payjama',
     'mrp' : 2589,
     'discount': 20
-  },{
+    },{
     'id':'men',
     'url':'images/men/lee-tapered-jeans.png',
     'name':'LEE MEN MODERN SERIES SLIM-FIT TAPERED-LEG JEAN',
     'mrp':2599,
     'discount': 12
-  }, {
+    }, {
     'id':'women',
     'url' : 'images/women/womengucci.jpeg',
     'name' : 'Gucci Women Handbag',
     'mrp' : 12569,
     'discount': 25
-  }, {
+    }, {
     'id':'women',
     'url' : 'images/women/womenHighLowDress.jpeg',
     'name' : 'Zara Women High Low Dress',
     'mrp' : 499,
     'discount': 5
-  }, {
+    }, {
     'id':'kids',
     'url' : 'images/kids/romper.png',
     'name' : 'Suspender Style Blue Romper with Cap',
     'mrp' : 769,
     'discount': 15
-  }, {
+    }, {
     'id':'kids',
     'url' : 'images/kids/ps.jpg',
     'name' : 'Horizon Zero Dawn (PS4)',
     'mrp' : 1550,
     'discount': 20
-  }, {
+    }, {
     'id':'electronics',
     'url' : 'images/electronics/trimmer.jpg',
     'name' : 'Philips BT1212/15 Beard Trimmer (Green)',
     'mrp' : 899,
     'discount': 30
-  },{
+    },{
     'id':'men',
     'url':'images/men/StraightCollarBlackShirt.jpg',
     'name': 'Straight Collar Black Shirt',
     'mrp': 3599,
     'discount': 10
-  }
-];
+    }
+  ];
 
   $scope.items = itemsList;
+
+  //function is used to calculate total price on cart
+  function calTotalPrice() {
+    var totalprice = 0;
+    angular.forEach($scope.cartItems,function(key){
+      totalprice += key.quantity * key.price;
+    });
+    $scope.total = totalprice;
+  }
 
   //function is used to add item to cart
   $scope.addToCart = function(item,quantity){
@@ -165,11 +173,7 @@ app.controller('ctrl',function($scope){
         $scope.cartItems.push(obj);
       }
     }
-    var totalprice = 0;
-    angular.forEach($scope.cartItems,function(key){
-      totalprice += key.quantity * key.price;
-    });
-    $scope.total = totalprice;
+    calTotalPrice();
     if($scope.cartItems.length >0){
       $scope.totallabel = 'Total Rs.';
       $scope.cartTable = false;
@@ -201,11 +205,7 @@ app.controller('ctrl',function($scope){
       $scope.total = '';
       $scope.totallabel = 'Your cart is empty!';
     }
-    var totalprice = 0;
-    angular.forEach($scope.cartItems,function(key){
-      totalprice += key.quantity * key.price;
-    });
-    $scope.total = totalprice;
+    calTotalPrice();
     $scope.numOfCartItems = $scope.cartItems.length;
   };
 
@@ -243,6 +243,30 @@ app.controller('ctrl',function($scope){
     $('.eachItemPrice').css({'top':'35%','left':'18%'});
   };
 
+  //function is used to increase quantity in cart
+  $scope.increaseQuantity = function (item) {
+    angular.forEach($scope.cartItems,function (key) {
+      if (item === key) {
+        if (key.quantity<5) {
+          key.quantity++;
+          calTotalPrice();
+        }
+      }
+    });
+  };
+
+   //function is used to decrease quantity in cart
+   $scope.decreaseQuantity = function (item) {
+    angular.forEach($scope.cartItems,function (key) {
+      if (item === key) {
+        if(key.quantity>1){
+          key.quantity--;
+          calTotalPrice();
+        }
+      }
+    });
+  };
+ 
   $scope.$watchGroup(['price5', 'price15','price50','price150','pricemax'], function(){
     angular.forEach($scope.items,function(key){
       if (key.price < 500) {
@@ -281,4 +305,5 @@ app.controller('ctrl',function($scope){
       return $scope.cond5;
     }
   };
+
 });

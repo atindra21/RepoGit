@@ -1,12 +1,13 @@
 #filterItemList{
     position: fixed;
     height: 100%;
-    width: 12%;
+    width: 18%;
     background-color: #ffe6f2;
     color: #660066;
     left: 0%;
     top: 9%;
     z-index: 1;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .categoryTitle{
     font-weight: bold;
@@ -14,8 +15,8 @@
 .quantityLabel{
     color: rgb(197, 13, 114);
     position: relative;
-    top: 57%;
-    left: 28%;
+    top: 72%;
+    right: 13%;
 }
 #pagehead{
     background-color: #660066;
@@ -31,7 +32,7 @@ h1{
     font-size: 256%;
     position: relative;
     text-align: center;
-    font-family: sans-serif;
+    font-family: serif;
 }
 #filterByCategory{
     position: absolute;
@@ -63,9 +64,11 @@ h1{
     width: 29%;
     color: #660066;
     border-color: #edd0ed;
+    max-height: 70%;
+    overflow: auto;
 }
 #itemsbody{
-    left: 11%;
+    left: 17%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     top: 10%;
     width:85%;
@@ -74,7 +77,7 @@ h1{
 .eachItem{
     border: 1px;
     text-align: center;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     border-style: solid;
     border-radius: 2%;
     padding: 2%;
@@ -84,15 +87,15 @@ h1{
     height: 350px;
     float: left;
     margin-left: 1.335%;
-    margin-bottom: 1.335%;
+    margin-bottom: 2%;
 }
 .eachItemBody{
     position: relative;
-    height: 300px;
+    height: 105%;
 }
 .eachItemName{
     font-weight: bold;
-    font-size: 120%;
+    font-size: 115%;
     color: #660066;
     height: 12%;
 }
@@ -100,76 +103,107 @@ img.eachItemImage{
     width: 78%;
     top: 4%;
     left: 10%;
-    height: 50%;
+    height: 45%;
     position: absolute;
 }
 img.eachItemImage:hover {
-    cursor: pointer;
-    height:102%;
-    width: 95%;
+    cursor: zoom-out;
+    height: 102%;
+    width: 104%;
     z-index: 1;
-    top:10%;
+    left: 0%;
+    top: 0%;
     position: absolute;
 }
 .eachItemPrice{
     color:rgba(33, 140, 211, 0.836);
     position: relative;
-    top: 58%;
+    top: 35%;
+    left: 18%;
+    text-decoration-line: line-through;
 }
 .priceLabel{
     font-weight: bold;
     color:rgb(139, 125, 218);
     position: relative;
-    top: 58%;
+    top: 35%;
+    left: 15%;
+}
+.discountLabel{
+    color: rgb(197, 13, 114);
+    position: relative;
+    top: 41%;
+    right: 28%;
+}
+.eachItemDiscount{
+    color:rgba(33, 140, 211, 0.836);
+    position: relative;
+    top: 41%;
+    right: 25%;
+}
+.dealLabel{
+    color: rgb(197, 13, 114);
+    position: relative;
+    top: 40%;
+    right: 11%;
+}
+.eachItemDeal{
+    color:rgba(33, 140, 211, 0.836);
+    position: relative;
+    top: 40%;
+    right: 8%;
 }
 .addToCartButtons{
-    background-color: #660066;
-    border-color: #660066;
-    color: white;
+    background-color: #edd0ed;
+    border-color: #edd0ed;
+    color: #660066;
     font-size: 110%;
     border-radius: 5%;
     padding: 1%;
     position: relative;
-    top: 80%;
-    right: 14%;
-    width: 65%;
+    top: 73%;
+    width: 115%;
+    left: -7.5%;
+    font-weight: bold;
 }
 .addToCartButtons:hover{
     background-color: #330033;
     border-color: #330033;
+    color: white;
+    font-weight: bold;
 }
 .quantityNumber{
     width: 10%;
     border-radius: 20%;
     position: relative;
-    top: 57%;
-    left: 30%;
+    top: 72%;
+    right: 10%;
 }
 #searchbox{
     position: absolute;
     width:25%;
-    top: 14%;
-    left: 15%;
+    top: 12%;
+    left: 20.5%;
     border-color: #660066;
 }
 #sortLabel{
     position: absolute;
-    top: 14.5%;
-    left: 43%;
+    top: 12.5%;
+    left: 51%;
     color: #660066;
     font-size: 121%;
 }
 #menu{
     border-color: #660066;
     position: absolute;
-    left: 48%;
-    top: 14%;
+    left: 57%;
+    top: 12%;
     width: 12%
 }
 #grid{
     position: absolute;
-    left: 74%;
-    top: 14%;
+    left: 79%;
+    top: 12%;
     width: 9%;
     height: 4%;
     color: #660066;
@@ -180,8 +214,8 @@ img.eachItemImage:hover {
 }
 #list{
     position: absolute;
-    left: 84%;
-    top: 14%;
+    left: 89%;
+    top: 12%;
     width: 9%;
     height: 4%;
     color: #660066;
@@ -192,8 +226,8 @@ img.eachItemImage:hover {
 }
 #viewLabel{
     position: absolute;
-    top: 14.5%;
-    left: 70%;
+    top: 12.5%;
+    left: 74%;
     color: #660066;
     font-size: 128%;
 }
@@ -329,6 +363,9 @@ a.service:hover{
 }
 #itemcontainer{
     position: relative;
-    top:85px;
+    top:60px;
     min-height: 580px;
+}
+#ranger{
+    color: red;
 }

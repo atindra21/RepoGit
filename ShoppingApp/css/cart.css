@@ -21,7 +21,7 @@
 .cartitems{
     text-align: center;
     border-width: 1px;
-    border-color: #660066;
+    border-color: #edd0ed;
     border-style: solid;
 }
 .eachcartname{
@@ -65,4 +65,19 @@
     width: 80%;
     background-color: #660066;
     border-color: #660066;
+}
+.quans{
+    border-radius: 50%;
+    border: 1px solid;
+    font-size: 78%;
+    width: 27%;
+    color: white;
+    background-color: #660066;
+    border-color: #660066;
+    padding: 4px;
+}
+.quans:hover{
+    background-color: white;
+    color: #660066;
+    cursor: pointer;
 }

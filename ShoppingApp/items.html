@@ -45,15 +45,21 @@
                     <tr class ="cartitems" ng-repeat="eachcartitem in cartItems">
                         <td class ="eachcartname">{{eachcartitem.name}}</span>
                         <td><img class="eachcartimage" src="{{eachcartitem.url}}"></td>
-                        <td class="eachcartquantity">{{eachcartitem.quantity}}</td>
-                        <td class ="eachcartprice">{{eachcartitem.price}}</td>
+                        <td class="eachcartquantity">
+                            <div class="row">
+                            <span class="quans"><span class="glyphicon glyphicon-minus" ng-click="increaseQuantity(eachcartitem)"></span></span>
+                            {{ eachcartitem.quantity}}
+                            <span class="quans"><span class="glyphicon glyphicon-plus"  ng-click="decreaseQuantity(eachcartitem)"></span></span>
+                            </div>
+                        </td>
+                        <td class ="eachcartprice">{{eachcartitem.price | number:2}}</td>
                         <td><span class="glyphicon glyphicon-remove-sign eachcartremove" ng-click="removeFromCart(eachcartitem.id)"></span></td>
                     </tr>
                 </table>
                 <div id="totalcartprice">
                     <span ng-bind="totallabel"></span>
-                    <span ng-bind="total"></span><br><br>
-                    <input class="btn btn-primary" type="submit" id="payNowCart" value="Pay Now" ng-disabled="isPayDisabled">
+                    <span ng-bind="total| number :2"></span><br><br>
+                    <input class="btn btn-primary" type="submit" id="payNowCart" value="Order Now" ng-disabled="isPayDisabled">
                 </div>
             </div>
         </div>
@@ -94,7 +100,9 @@
             <input type="checkbox" ng-checked ="cond4" ng-modal="cond4"> 5000-15000</input><br>
             <input type="checkbox" ng-checked ="cond5" ng-modal="cond5"> Above 15000</input><br>
         </div>
-
+        <div id= "ranger" range-slider="range-slider" min="sliderConfig.min" max="sliderConfig.max"
+         model-min="sliderConfig.userMin" model-max="sliderConfig.userMax">
+        </div>
     </div>
 
     <!--contains the body contents i.e all items -->
@@ -109,8 +117,12 @@
                         <label class="quantityLabel">Quantity</label>
                         <input type="number" class="quantityNumber" min="1" max="5" maxlength="10px" ng-model="quantity">
                         <input type="button" class="addToCartButtons" value="Add to Cart" ng-click="addToCart(item,quantity)">
-                        <label class="priceLabel">Inclusive of taxes </label>
-                        <span class="eachItemPrice"> Rs.{{item.price}}</span>
+                        <label class="priceLabel">M.R.P.</label>
+                        <span class="eachItemPrice"> Rs.{{item.mrp| number :0}}</span>
+                        <label class="discountLabel">Discount</label>
+                        <span class="eachItemDiscount">{{item.discount}}% off</span>
+                        <label class="dealLabel">Deal of the day</label>
+                        <span class="eachItemDeal"> Rs.{{(item.mrp/100*(100-item.discount))| number : 2}}</span>
                     </div>
                 </div>
             </div>
@@ -148,15 +160,3 @@
 </body>
 
 </html>
-
-<!--<div id="categoryFilter">
-        <div class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-            <button class="categoryFilters" id="menfilter">Men</button>
-        </div>
-        <div class="dropdown-menu" data-animations="spin">
-
-        </div>
-            <button class="categoryFilters" id="womenfilter">Women</button>
-        <button class="categoryFilters" id="kidsfilter">Kids</button>
-        <button class="categoryFilters" id="elecfilter">Electronics</button>
-    </div>-->

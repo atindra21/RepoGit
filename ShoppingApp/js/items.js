@@ -12,6 +12,7 @@ app.controller('ctrl',function($scope){
   $scope.isPayDisabled = true;
   $scope.quantity = 1;
   $scope.numOfCartItems = $scope.cartItems.length;
+  $scope.priceFilter = [];
 
   //items json
   var itemsList =[{
@@ -144,6 +145,7 @@ app.controller('ctrl',function($scope){
   ];
 
   $scope.items = itemsList;
+  $scope.itemsCopy = $scope.items;
 
   //function is used to calculate total price on cart
   function calTotalPrice() {
@@ -212,7 +214,7 @@ app.controller('ctrl',function($scope){
     $scope.listDiasabled = true;
     $('.eachItem').css({'width':'100%','height':'400px'});
     $('.eachItemDiscount').css({'top':'52%','right':'-18%'});
-    $('.discountLabel').css({'top':'59%','right':'48%'});
+    $('.discountLabel').css({'top':'52%','right':'-18%'});
     $('.eachItemDeal').css({'top':'58%','right':'-2.5%'});
     $('.dealLabel').css({'top':'58%','right':'-2%'});
     $('img.eachItemImage').css({'width': '36%', 'left': '31%','height': '60%','top':'0%'});
@@ -227,13 +229,13 @@ app.controller('ctrl',function($scope){
   $scope.showGridView = function(){
     $scope.gridDiasabled = true;
     $scope.listDiasabled = false;
-    $('.eachItem').css({'width':'32%','height':'350px'});
+    $('.eachItem').css({'width':'30%','height':'336px'});
     $('.eachItemDiscount').css({'top':'41%','right':'25%'});
     $('.discountLabel').css({'top':'41%','right':'28%'});
     $('.eachItemDeal').css({'top':'40%','right':'8%'});
     $('.dealLabel').css({'top':'40%','right':'11%'});
     $('img.eachItemImage').css({'width': '78%', 'left': '10%','height': '45%','top':'4%'});
-    $('.addToCartButtons').css({'top':'73%','width':'115%','left':'-7.5%'});
+    $('.addToCartButtons').css({'top':'73%','width':'117%','left':'-8.5%'});
     $('.quantityLabel').css({'top':'72%','right':'13%'});
     $('.quantityNumber').css({'top':'72%','width':'10%','right':'10%'});
     $('.priceLabel').css({'top':'35%','left':'15%'});
@@ -264,6 +266,40 @@ app.controller('ctrl',function($scope){
     });
   };
 
+  //filter the items and assigned to a model
+  $scope.filterItemsByPrice = function(low,high,check){
+    if(check === true){
+      angular.forEach($scope.items,function (key){
+        var price = key.mrp*(100-key.discount)/100;
+        if (price<low || price>high) {
+          $scope.items.pop(key);
+        }
+      });
+      console.log('Pushing '+$scope.priceFilter.length);
+      angular.forEach($scope.items,function (key){
+        console.log(key.name);
+      });
+    }
+    else{
+      console.log('before Pulling '+$scope.priceFilter.length);
+      angular.forEach($scope.items,function (key){
+        var price = key.mrp*(100-key.discount)/100;
+        if (price>low && price<high) {
+          $scope.priceFilter.pop(key);
+        }
+      });
+      console.log('Pulling '+$scope.priceFilter.length);
+      angular.forEach($scope.priceFilter,function (key){
+        console.log(key.mrp*(100-key.discount)/100);
+      });
+    }
+  };
+});
+/* comments
+  $scope.$watchGroup(['checkmin','check1500','check3000','check5000','checkmax'],function(){
+    if($scope.checkmin === true){
+    }
+  });
   $scope.filterItemsByPrice = function (i,j){
     angular.forEach($scope.items,function(key){
       var price = key.mrp*(100-key.discount)/100;
@@ -273,29 +309,23 @@ app.controller('ctrl',function($scope){
       }
     });
   };
+  $scope.$watchGroup(['price5', 'price15','price50','price150','pricemax'], function(){
+     angular.forEach($scope.items,function(key){
+       if (key.price < 500) {
+         $scope.price5 = key.price;
+       } else if(key.price > 500 && key.price<1500){
+         $scope.price15 = key.price;
+       } else if(key.price > 1500 && key.price<5000){
+         $scope.price50 = key.price;
+       } else if(key.price > 5000 && key.price<15000){
+         $scope.price150 = key.price;
+       } else{
+         $scope.pricemax = key.price;
+       }
+     });
+   });
 
-  // $scope.$watchGroup(['checkmin','check1500','check3000','check5000','checkmax'],function(){
-  //   if($scope.checkmin === true){
-  //     //
-  //   }
-  // });
-  // $scope.$watchGroup(['price5', 'price15','price50','price150','pricemax'], function(){
-  //   angular.forEach($scope.items,function(key){
-  //     if (key.price < 500) {
-  //       $scope.price5 = key.price;
-  //     } else if(key.price > 500 && key.price<1500){
-  //       $scope.price15 = key.price;
-  //     } else if(key.price > 1500 && key.price<5000){
-  //       $scope.price50 = key.price;
-  //     } else if(key.price > 5000 && key.price<15000){
-  //       $scope.price150 = key.price;
-  //     } else{
-  //       $scope.pricemax = key.price;
-  //     }
-  //   });
-  // });
-
-  /*$scope.check = function (price) {
+  $scope.check = function (price) {
     if (price<=500) {
       $scope.cond1 = true;
       return $scope.cond1;
@@ -316,11 +346,21 @@ app.controller('ctrl',function($scope){
       $scope.cond5 = true;
       return $scope.cond5;
     }
-  };*/
-
-});
-/*app.filter('byRange',function($scope){
+  };
+  }).filter('filterItemsByPrice',function (){
+  return function(low,high,items){
+    var filtered = [];
+    angular.forEach(items,function (key){
+      if (key.price >= low && key.price <= high){
+        filtered.push(key);
+      }
+    });
+    return filtered;
+  };
+ });
+  app.filter('byRange',function($scope){
      $scope.$watchGroup(['checkmin','check1500','check3000','check5000','checkmax'],function(){
      if($scope)
    });
-});*/
+  });
+*/

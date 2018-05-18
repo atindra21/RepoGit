@@ -52,7 +52,7 @@
                             <span class="quans"><span class="glyphicon glyphicon-plus"  ng-click="increaseQuantity(eachcartitem)"></span></span>
                             </div>
                         </td>
-                        <td class ="eachcartprice">{{eachcartitem.price | number:2}}</td>
+                        <td class ="eachcartprice">{{eachcartitem.price | number:0}}</td>
                         <td><span class="glyphicon glyphicon-remove-sign eachcartremove" ng-click="removeFromCart(eachcartitem.id)"></span></td>
                     </tr>
                 </table>
@@ -95,11 +95,11 @@
 
         <div id="filterByPrice">
             <span class="categoryTitle">Price</span><br>
-            <input type="checkbox" ng-checked ="filterItemsByPrice(0,700)"/> Rs 700 and Below <br/>
-            <input type="checkbox" ng-checked ="filterItemsByPrice(701,1500)"/> Rs 701 - 1500 <br/>
-            <input type="checkbox" ng-checked ="filterItemsByPrice(1501,3000)"/> Rs 1501 - 3000 <br/>
-            <input type="checkbox" ng-checked ="filterItemsByPrice(3001,5000)"/> Rs 3001 - 5000 <br/>
-            <input type="checkbox" ng-checked ="filterItemsByPrice(5000,100000)"/> Rs 5001 and Above
+            <input type="checkbox" ng-model = "check1" ng-click ="filterItemsByPrice(0,700,check1)"/> Rs 700 and Below <br/>
+            <input type="checkbox" ng-model = "check2" ng-click ="filterItemsByPrice(701,1500,check2)"/> Rs 701 - 1500 <br/>
+            <input type="checkbox" ng-model = "check3" ng-click ="filterItemsByPrice(1501,3000,check3)"/> Rs 1501 - 3000 <br/>
+            <input type="checkbox" ng-model = "check4" ng-click ="filterItemsByPrice(3001,5000,check4)"/> Rs 3001 - 5000 <br/>
+            <input type="checkbox" ng-model = "check5" ng-click ="filterItemsByPrice(5001,100000,check5)"/> Rs 5001 and Above
         </div>
     </div>
 
@@ -107,7 +107,7 @@
     <div id="itemcontainer">
         <div class="container">
         <div class="row">
-            <div id="itemsbody" ng-repeat="item in items | filter:{name:itemSearch} | orderBy:sortBy | filter :byRange()">
+            <div id="itemsbody" ng-repeat="item in items | filter:{name:itemSearch} | orderBy:sortBy">
                 <div class="eachItem" ng-show="{{item.id}}">
                     <div ng-bind="item.name" class="eachItemName"></div>
                     <div class="eachItemBody">

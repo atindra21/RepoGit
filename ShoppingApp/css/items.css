@@ -1,7 +1,7 @@
 #filterItemList{
     position: fixed;
     height: 100%;
-    width: 18%;
+    width: 14%;
     background-color: #ffe6f2;
     color: #660066;
     left: 0%;
@@ -43,6 +43,7 @@ h1{
     position: absolute;
     left:15%;
     top:20%;
+    margin-top: 10%;
 }
 #filterBy{
     top:1%;
@@ -68,7 +69,7 @@ h1{
     overflow: auto;
 }
 #itemsbody{
-    left: 17%;
+    left: 14%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     top: 10%;
     width:85%;
@@ -82,12 +83,12 @@ h1{
     border-radius: 2%;
     padding: 2%;
     background-color: #fff7fb;
-    border-color:#edd0ed;
-    width:32%;
-    height: 350px;
+    border-color: #edd0ed;
+    width: 30%;
+    height: 336px;
     float: left;
-    margin-left: 1.335%;
-    margin-bottom: 2%;
+    margin-left: 2%;
+    margin-bottom: 5%;
 }
 .eachItemBody{
     position: relative;
@@ -162,8 +163,8 @@ img.eachItemImage:hover {
     padding: 1%;
     position: relative;
     top: 73%;
-    width: 115%;
-    left: -7.5%;
+    width: 117%;
+    left: -8.5%;
     font-weight: bold;
 }
 .addToCartButtons:hover{
@@ -183,29 +184,30 @@ img.eachItemImage:hover {
     position: absolute;
     width:25%;
     top: 12%;
-    left: 20.5%;
+    height: 3.5%;
+    left: 18.5%;
     border-color: #660066;
 }
 #sortLabel{
     position: absolute;
     top: 12.5%;
-    left: 51%;
+    left: 47%;
     color: #660066;
     font-size: 121%;
 }
 #menu{
     border-color: #660066;
     position: absolute;
-    left: 57%;
+    left: 52%;
     top: 12%;
     width: 12%
 }
 #grid{
     position: absolute;
-    left: 79%;
+    left: 72%;
     top: 12%;
     width: 9%;
-    height: 4%;
+    height: 3.5%;
     color: #660066;
     background-color:white;
     border-color: #660066;
@@ -214,10 +216,10 @@ img.eachItemImage:hover {
 }
 #list{
     position: absolute;
-    left: 89%;
+    left: 82%;
     top: 12%;
     width: 9%;
-    height: 4%;
+    height: 3.5%;
     color: #660066;
     background-color:white;
     border-color: #660066;
@@ -227,7 +229,7 @@ img.eachItemImage:hover {
 #viewLabel{
     position: absolute;
     top: 12.5%;
-    left: 74%;
+    left: 68%;
     color: #660066;
     font-size: 128%;
 }
@@ -363,7 +365,7 @@ a.service:hover{
 }
 #itemcontainer{
     position: relative;
-    top:60px;
+    top:71px;
     min-height: 580px;
 }
 #ranger{

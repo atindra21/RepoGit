@@ -8,21 +8,30 @@
     height: 6%;
     color: white;
     font-weight: bold;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.404);
 }
 #page_index{
     position: absolute; 
 }
+body{
+    background-color: black;
+}
 #page_content{
     position: absolute;
 }
-#title_image{
-    position: absolute;
-    width: 85%;
-    right: 0%;
-    z-index: -1;
-    height: 50%;
-    top: 8%;
+.imgslide{
+    height: 450px;
+}
+.page_title{
+    position: relative;
+    height: 51%;
+    width: 88%;
+    left: 7%;
+    border: 0;
+    top: -18px;
+}
+.title_image{
+    width: 100%;
 }
 #searchbox{
     position: absolute;

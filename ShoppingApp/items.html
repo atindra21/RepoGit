@@ -78,13 +78,14 @@
         <label id="viewLabel">View</label>
         <button class="glyphicon glyphicon-th" id="grid" ng-click="showGridView()" ng-disabled="gridDiasabled" ng-init="gridDiasabled='true'"> Grid</button>
         <button class="glyphicon glyphicon-th-list" id="list" ng-click="showListView()"ng-disabled="listDisabled" ng-init="listDiasabled='false'"> List</button><br><br><br>
-        <span ng-bind="itemscondition" id="noitems"></span>
+        <span id="noitems">{{itemscondition}}</span>
     </div>
 
     <!--contains the filter section of page -->
     <div id="filterItemList">
 
         <label id="filterBy">Filter</label>
+
         <div id="filterByCategory">
            <span class="categoryTitle ">Category</span><br>
             <input type="checkbox" ng-model="men"> Men</input><br>
@@ -95,11 +96,11 @@
 
         <div id="filterByPrice">
             <span class="categoryTitle">Price</span><br>
-            <input type="checkbox" ng-model = "check1" ng-click ="filterItemsByPrice(0,700,check1)"/> Rs 700 and Below <br/>
-            <input type="checkbox" ng-model = "check2" ng-click ="filterItemsByPrice(701,1500,check2)"/> Rs 701 - 1500 <br/>
-            <input type="checkbox" ng-model = "check3" ng-click ="filterItemsByPrice(1501,3000,check3)"/> Rs 1501 - 3000 <br/>
-            <input type="checkbox" ng-model = "check4" ng-click ="filterItemsByPrice(3001,5000,check4)"/> Rs 3001 - 5000 <br/>
-            <input type="checkbox" ng-model = "check5" ng-click ="filterItemsByPrice(5001,100000,check5)"/> Rs 5001 and Above
+            <input type="checkbox" ng-model = "check1" ng-change ="filterItemsByPrice(0,700,check1)"/> Rs 700 and Below <br/>
+            <input type="checkbox" ng-model = "check2" ng-change ="filterItemsByPrice(701,1500,check2)"/> Rs 701 - 1500 <br/>
+            <input type="checkbox" ng-model = "check3" ng-change ="filterItemsByPrice(1501,3000,check3)"/> Rs 1501 - 3000 <br/>
+            <input type="checkbox" ng-model = "check4" ng-change ="filterItemsByPrice(3001,5000,check4)"/> Rs 3001 - 5000 <br/>
+            <input type="checkbox" ng-model = "check5" ng-change ="filterItemsByPrice(5001,100000,check5)"/> Rs 5001 and Above
         </div>
     </div>
 
@@ -126,7 +127,7 @@
             </div>
         </div>
         </div><br>
-
+        
     </div>
 
     <!--contains the footer section of page -->

@@ -1,7 +1,7 @@
 var app = angular.module('app',[]);
 app.controller('ctrl',function($scope){
 
-  //initializing the models
+  /*initializing the models*/
   $scope.cartItems = [];
   $scope.totallabel = 'Your cart is empty!';
   $scope.men = true;
@@ -14,7 +14,7 @@ app.controller('ctrl',function($scope){
   $scope.numOfCartItems = $scope.cartItems.length;
   $scope.priceFilter = [];
 
-  //items json
+  /*items json*/
   var itemsList =[{
     'id':'electronics',
     'url' : 'images/electronics/mac.jpg',
@@ -145,9 +145,9 @@ app.controller('ctrl',function($scope){
   ];
 
   $scope.items = itemsList;
-  $scope.itemsCopy = $scope.items;
+  $scope.itemsCloned = $scope.items;
 
-  //function is used to calculate total price on cart
+  /*function to calculate total price on cart*/
   function calTotalPrice() {
     var totalprice = 0;
     angular.forEach($scope.cartItems,function(key){
@@ -156,7 +156,7 @@ app.controller('ctrl',function($scope){
     $scope.total = totalprice;
   }
 
-  //function is used to add item to cart
+  /*function to add item to cart*/
   $scope.addToCart = function(item,quantity){
     if(quantity>0 && quantity<5){
       var obj = {'name':item.name,'quantity':quantity,'price':item.mrp/100*(100-item.discount),'url':item.url,'id':item.id};
@@ -186,7 +186,7 @@ app.controller('ctrl',function($scope){
     }
   };
 
-  //function is used to remove item from cart
+  /*function to remove item from cart*/
   $scope.removeFromCart= function(id){
     angular.forEach($scope.cartItems,function(key){
       if(key.id === id){
@@ -208,7 +208,7 @@ app.controller('ctrl',function($scope){
     $scope.numOfCartItems = $scope.cartItems.length;
   };
 
-  //function is used to show list view if items in body
+  /*function to show list view if items in body*/
   $scope.showListView = function(){
     $scope.gridDiasabled = false;
     $scope.listDiasabled = true;
@@ -225,7 +225,7 @@ app.controller('ctrl',function($scope){
     $('.eachItemPrice').css({'top':'59%','left':'-50%'});
   };
 
-  //function is used to show grid view if items in body
+  /*function to show grid view if items in body*/
   $scope.showGridView = function(){
     $scope.gridDiasabled = true;
     $scope.listDiasabled = false;
@@ -242,7 +242,7 @@ app.controller('ctrl',function($scope){
     $('.eachItemPrice').css({'top':'35%','left':'18%'});
   };
 
-  //function is used to increase quantity in cart
+  /*function to increase quantity in cart*/
   $scope.increaseQuantity = function (item) {
     angular.forEach($scope.cartItems,function (key) {
       if (item === key) {
@@ -254,7 +254,7 @@ app.controller('ctrl',function($scope){
     });
   };
 
-  //function is used to decrease quantity in cart
+  /*function to decrease quantity in cart*/
   $scope.decreaseQuantity = function (item) {
     angular.forEach($scope.cartItems,function (key) {
       if (item === key) {
@@ -266,33 +266,54 @@ app.controller('ctrl',function($scope){
     });
   };
 
-  //filter the items and assigned to a model
-  $scope.filterItemsByPrice = function(low,high,check){
-    if(check === true){
-      angular.forEach($scope.items,function (key){
-        var price = key.mrp*(100-key.discount)/100;
-        if (price<low || price>high) {
-          $scope.items.pop(key);
+  /*function to dispplay num of items found*/
+  $scope.$watch('items',function(){
+    if ($scope.items.length === 0) {
+      $scope.itemscondition = ' No items found!!';
+    }
+    else{
+      $scope.itemscondition = '';
+    }
+  });
+
+  /*function to check if an object exists in a list
+  function containsObject(obj, list) {
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].key === obj.key) {
+            return true;
         }
-      });
-      console.log('Pushing '+$scope.priceFilter.length);
-      angular.forEach($scope.items,function (key){
-        console.log(key.name);
+    }
+    return false;
+  }*/
+
+  /*filter the items by price*/
+  $scope.filterItemsByPrice = function(low,high,check){
+    var filteredList = [];
+      
+    if(check){
+      console.log('before Pulling '+$scope.items.length);
+      angular.forEach($scope.itemsCloned,function (item){
+        var price = item.mrp*(100-item.discount)/100;    /*calculates the price of each object*/
+        if (price>=low && price<= high) {
+          filteredList.push(item);
+        }
       });
     }
     else{
-      console.log('before Pulling '+$scope.priceFilter.length);
-      angular.forEach($scope.items,function (key){
-        var price = key.mrp*(100-key.discount)/100;
-        if (price>low && price<high) {
-          $scope.priceFilter.pop(key);
+      console.log('before Pushing '+$scope.items.length);
+      filteredList = $scope.items;
+      angular.forEach($scope.itemsCloned,function (item){
+        var price = item.mrp*(100-item.discount)/100;    /*calculates the price of each object*/
+        if (price<low || price>high) {
+          filteredList.pop(item);
         }
       });
-      console.log('Pulling '+$scope.priceFilter.length);
-      angular.forEach($scope.priceFilter,function (key){
-        console.log(key.mrp*(100-key.discount)/100);
-      });
     }
+    $scope.items = angular.copy(filteredList);
+    console.log('Pull/Push '+$scope.items.length);
+    angular.forEach($scope.items,function (key){
+      console.log(key.mrp*(100-key.discount)/100);
+    });
   };
 });
 /* comments
@@ -358,9 +379,7 @@ app.controller('ctrl',function($scope){
     return filtered;
   };
  });
-  app.filter('byRange',function($scope){
-     $scope.$watchGroup(['checkmin','check1500','check3000','check5000','checkmax'],function(){
-     if($scope)
-   });
-  });
 */
+app.filter('byRange',function(){
+  //trying to filter items using this
+});

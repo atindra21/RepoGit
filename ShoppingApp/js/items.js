@@ -1,17 +1,17 @@
 var app = angular.module('app',[]);
-app.controller('ctrl',function($scope){
+app.controller('ctrl',['$scope','$filter',function($scope){
 
   /*initializing the models*/
-  $scope.cartItems = [];
-  $scope.totallabel = 'Your cart is empty!';
-  $scope.men = true;
-  $scope.cartTable = true;
-  $scope.women = true;
-  $scope.kids = true;
-  $scope.electronics = true;
-  $scope.isPayDisabled = true;
-  $scope.quantity = 1;
-  $scope.numOfCartItems = $scope.cartItems.length;
+    $scope.cartItems = [];
+    $scope.totallabel = 'Your cart is empty!';
+    $scope.men = true;
+    $scope.cartTable = true;
+    $scope.women = true;
+    $scope.kids = true;
+    $scope.electronics = true;
+    $scope.isPayDisabled = true;
+    $scope.quantity = 1;
+    $scope.numOfCartItems = $scope.cartItems.length;
   $scope.priceFilter = [];
 
   /*items json*/
@@ -144,6 +144,13 @@ app.controller('ctrl',function($scope){
     }
   ];
 
+  /*checkbox json*/
+  $scope.checkList =[
+    {'min':0,'max':700,'label':'Below Rs.700'},{'min':701,'max':1500,'label':'Rs.701 - Rs.1500'},
+    {'min':1501,'max':3000,'label':'Rs.1501 - Rs.3000'},{'min':3001,'max':5000,'label':'Rs.3001 - Rs.5000'},
+    {'min':5001,'max':100000,'label':'Above Rs.5000'}
+  ];
+
   $scope.items = itemsList;
   $scope.itemsCloned = $scope.items;
 
@@ -266,7 +273,7 @@ app.controller('ctrl',function($scope){
     });
   };
 
-  /*function to dispplay num of items found*/
+  /*function to display num of items found*/
   $scope.$watch('items',function(){
     if ($scope.items.length === 0) {
       $scope.itemscondition = ' No items found!!';
@@ -275,111 +282,17 @@ app.controller('ctrl',function($scope){
       $scope.itemscondition = '';
     }
   });
-
-  /*function to check if an object exists in a list
-  function containsObject(obj, list) {
-    for (var i = 0; i < list.length; i++) {
-        if (list[i].key === obj.key) {
-            return true;
-        }
-    }
-    return false;
-  }*/
-
-  /*filter the items by price*/
-  $scope.filterItemsByPrice = function(low,high,check){
-    var filteredList = [];
-      
-    if(check){
-      console.log('before Pulling '+$scope.items.length);
-      angular.forEach($scope.itemsCloned,function (item){
-        var price = item.mrp*(100-item.discount)/100;    /*calculates the price of each object*/
-        if (price>=low && price<= high) {
-          filteredList.push(item);
-        }
-      });
-    }
-    else{
-      console.log('before Pushing '+$scope.items.length);
-      filteredList = $scope.items;
-      angular.forEach($scope.itemsCloned,function (item){
-        var price = item.mrp*(100-item.discount)/100;    /*calculates the price of each object*/
-        if (price<low || price>high) {
-          filteredList.pop(item);
-        }
-      });
-    }
-    $scope.items = angular.copy(filteredList);
-    console.log('Pull/Push '+$scope.items.length);
-    angular.forEach($scope.items,function (key){
-      console.log(key.mrp*(100-key.discount)/100);
-    });
-  };
-});
-/* comments
-  $scope.$watchGroup(['checkmin','check1500','check3000','check5000','checkmax'],function(){
-    if($scope.checkmin === true){
-    }
-  });
-  $scope.filterItemsByPrice = function (i,j){
-    angular.forEach($scope.items,function(key){
-      var price = key.mrp*(100-key.discount)/100;
-      if (price>=i && price<=j){
-        console.log(key.name);
-        return true;
-      }
-    });
-  };
-  $scope.$watchGroup(['price5', 'price15','price50','price150','pricemax'], function(){
-     angular.forEach($scope.items,function(key){
-       if (key.price < 500) {
-         $scope.price5 = key.price;
-       } else if(key.price > 500 && key.price<1500){
-         $scope.price15 = key.price;
-       } else if(key.price > 1500 && key.price<5000){
-         $scope.price50 = key.price;
-       } else if(key.price > 5000 && key.price<15000){
-         $scope.price150 = key.price;
-       } else{
-         $scope.pricemax = key.price;
-       }
-     });
-   });
-
-  $scope.check = function (price) {
-    if (price<=500) {
-      $scope.cond1 = true;
-      return $scope.cond1;
-    }
-    else if(price<=1500) {
-      $scope.cond2 = true;
-      return $scope.cond2;
-    }
-    else if(price<=5000 ) {
-      $scope.cond3 = true;
-      return $scope.cond3;
-    }
-    else if(price<=15000) {
-      $scope.cond4 = true;
-      return $scope.cond4;
-    }
-    else{
-      $scope.cond5 = true;
-      return $scope.cond5;
-    }
-  };
-  }).filter('filterItemsByPrice',function (){
-  return function(low,high,items){
+}]);
+app.filter('pricebetween',function(items,min,max){
+  if(!isNaN(min)){
     var filtered = [];
-    angular.forEach(items,function (key){
-      if (key.price >= low && key.price <= high){
-        filtered.push(key);
+    angular.forEach(items,function(item){
+      var price = item.mrp*(100-item.discount)/100;
+      if(price>= min && price<= max){
+        filtered.push(item);
       }
     });
     return filtered;
-  };
- });
-*/
-app.filter('byRange',function(){
-  //trying to filter items using this
+  }
+  return items;
 });

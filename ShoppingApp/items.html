@@ -97,7 +97,7 @@
         <div id="filterByPrice">
             <span class="categoryTitle">Price</span><br>
             <div ng-repeat="check in checkList">
-                <input type="checkbox" ng-model="check.max"/> {{check.label}}
+                <input type="checkbox" ng-model="check.id" ng-change="filterByPrice"/> {{check.label}}
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
     <div id="itemcontainer">
         <div class="container">
         <div class="row">
-            <div id="itemsbody" ng-repeat="item in items | filter:{name:itemSearch} | orderBy:sortBy | pricebetween:check.min:check.max">
+            <div id="itemsbody" ng-repeat="item in items | filter:{name:itemSearch} | orderBy:sortBy | filter:pricebetween(check.min,check.max)">
                 <div class="eachItem" ng-show="{{item.id}}">
                     <div ng-bind="item.name" class="eachItemName"></div>
                     <div class="eachItemBody">
